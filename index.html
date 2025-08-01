@@ -1,58 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Référence Prime Spiral</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 2em;
-    }
-    h1 {
-      color: darkblue;
-    }
-    .legend {
-      font-style: italic;
-      margin-bottom: 1em;
-    }
-    input[type="number"] {
-      padding: 0.5em;
-      font-size: 1em;
-      width: 200px;
-    }
-    button {
-      padding: 0.5em 1em;
-      font-size: 1em;
-      margin-left: 0.5em;
-    }
-    .footer {
-      margin-top: 3em;
-      font-size: 0.9em;
-      color: #666;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Référence Prime Spiral</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Référence Prime Spiral</h1>
-  <p>Un système géométrique visuel pour explorer la distribution des nombres premiers et les paires de Goldbach.</p>
+<header>
+    Référence Prime Spiral
+</header>
 
-  <h2>Visualisation en spirale</h2>
-  <p class="legend">🟦 Points bleus = nombres premiers &nbsp;&nbsp;|&nbsp;&nbsp; 🔴 Lignes rouges = paires de Goldbach</p>
+<main>
+    <h2>Un système géométrique visuel pour explorer la distribution des nombres premiers et les paires de Goldbach</h2>
 
-  <h2>Explorez la spirale</h2>
-  <p>
-    Entrez un nombre pair (≥ 4) : 
-    <input type="number" id="evenInput" min="4" step="2">
-    <button onclick="findGoldbach()">Afficher la paire Goldbach</button>
-  </p>
+    <section>
+        <h3>🔁 Visualisation en spirale</h3>
+        <p>🟦 Points bleus = nombres premiers   |   🔴 Lignes rouges = paires de Goldbach</p>
+    </section>
 
-  <div id="result"></div>
+    <section>
+        <h3>🔎 Explorez la spirale</h3>
+        <label for="evenInput">Entrez un nombre pair (≥ 4) :</label><br>
+        <input type="number" id="evenInput" min="4" step="2" value="100"><br>
+        <button onclick="showGoldbach()">Afficher la paire Goldbach</button>
+        <div id="result"></div>
+    </section>
+</main>
 
-  <div class="footer">
+<footer>
     Créé par Bahbouhi Bouchaib · © 2025
-  </div>
+</footer>
 
+<script src="script.js"></script>
 </body>
 </html>
