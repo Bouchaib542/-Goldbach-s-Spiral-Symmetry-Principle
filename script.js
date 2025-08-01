@@ -1,44 +1,77 @@
-// Liste des petits nombres premiers pour exemple (vous pouvez l'étendre)
-const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
-                31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
-                73, 79, 83, 89, 97, 101, 103, 107, 109, 113,
-                127, 131, 137, 139, 149, 151, 157, 163, 167, 173,
-                179, 181, 191, 193, 197, 199, 211, 223, 227, 229];
-
 function isPrime(n) {
     if (n < 2) return false;
     if (n === 2) return true;
     if (n % 2 === 0) return false;
-    const sqrt = Math.sqrt(n);
-    for (let i = 3; i <= sqrt; i += 2) {
+    for (let i = 3; i <= Math.sqrt(n); i += 2) {
         if (n % i === 0) return false;
     }
     return true;
 }
 
-function goldbachPair(even) {
-    for (let i = 2; i <= even / 2; i++) {
-        if (isPrime(i) && isPrime(even - i)) {
-            return [i, even - i];
-        }
+function getGoldbachPair(E) {
+    for (let p = 2; p <= E / 2; p++) {
+        let q = E - p;
+        if (isPrime(p) && isPrime(q)) return [p, q];
     }
     return null;
 }
 
-function showGoldbach() {
-    const input = document.getElementById("evenInput");
-    const resultDiv = document.getElementById("result");
-    const even = parseInt(input.value, 10);
+function plotSpiral() {
+    const canvas = document.getElementById("spiralCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (even < 4 || even % 2 !== 0) {
-        resultDiv.innerHTML = "Veuillez entrer un nombre pair supérieur ou égal à 4.";
+    const E = parseInt(document.getElementById("evenInput").value);
+    const resultEl = document.getElementById("result");
+
+    if (isNaN(E) || E < 4 || E % 2 !== 0) {
+        resultEl.textContent = "Veuillez entrer un nombre pair ≥ 4.";
         return;
     }
 
-    const pair = goldbachPair(even);
-    if (pair) {
-        resultDiv.innerHTML = `✅ ${even} = ${pair[0]} + ${pair[1]}`;
-    } else {
-        resultDiv.innerHTML = "❌ Aucune paire trouvée.";
+    const [p, q] = getGoldbachPair(E) || [];
+
+    if (!p || !q) {
+        resultEl.textContent = "Aucune paire de Goldbach trouvée.";
+        return;
     }
+
+    resultEl.textContent = `${E} = ${p} + ${q}`;
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const scale = 5;
+    const max = Math.max(p, q, E);
+
+    for (let n = 2; n <= max; n++) {
+        if (isPrime(n)) {
+            const theta = n * 0.2;
+            const r = scale * Math.sqrt(n);
+            const x = centerX + r * Math.cos(theta);
+            const y = centerY + r * Math.sin(theta);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+        }
+    }
+
+    // Draw red line between p and q
+    const thetaP = p * 0.2;
+    const rP = scale * Math.sqrt(p);
+    const xP = centerX + rP * Math.cos(thetaP);
+    const yP = centerY + rP * Math.sin(thetaP);
+
+    const thetaQ = q * 0.2;
+    const rQ = scale * Math.sqrt(q);
+    const xQ = centerX + rQ * Math.cos(thetaQ);
+    const yQ = centerY + rQ * Math.sin(thetaQ);
+
+    ctx.beginPath();
+    ctx.moveTo(xP, yP);
+    ctx.lineTo(xQ, yQ);
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 2;
+    ctx.stroke();
 }
