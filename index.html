@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Référence Prime Spiral</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    Référence Prime Spiral
-</header>
-
-<main>
+    <h1>Référence Prime Spiral</h1>
     <h2>Un système géométrique visuel pour explorer la distribution des nombres premiers et les paires de Goldbach</h2>
 
-    <section>
-        <h3>🔁 Visualisation en spirale</h3>
-        <p>🟦 Points bleus = nombres premiers   |   🔴 Lignes rouges = paires de Goldbach</p>
-    </section>
+    <div id="interface">
+        <p><strong>🟦 Points bleus</strong> = nombres premiers &nbsp;&nbsp;|&nbsp;&nbsp; <strong>🔴 Lignes rouges</strong> = paires de Goldbach</p>
+        <input type="number" id="evenInput" placeholder="Entrez un nombre pair ≥ 4" min="4" step="2">
+        <button onclick="plotSpiral()">Afficher la paire Goldbach</button>
+        <p id="result"></p>
+    </div>
 
-    <section>
-        <h3>🔎 Explorez la spirale</h3>
-        <label for="evenInput">Entrez un nombre pair (≥ 4) :</label><br>
-        <input type="number" id="evenInput" min="4" step="2" value="100"><br>
-        <button onclick="showGoldbach()">Afficher la paire Goldbach</button>
-        <div id="result"></div>
-    </section>
-</main>
+    <canvas id="spiralCanvas" width="600" height="600"></canvas>
 
-<footer>
-    Créé par Bahbouhi Bouchaib · © 2025
-</footer>
+    <footer>
+        Créé par Bahbouhi Bouchaib · © 2025
+    </footer>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
