@@ -1,0 +1,11 @@
+Copyright © 2025 Bahbouhi Bouchaib
+
+All rights reserved.
+
+This work, including all source code, mathematical methods, visualizations, and research content, is the intellectual property of Bahbouhi Bouchaib. Unauthorized copying, reproduction, redistribution, or modification of any part of this work is strictly prohibited.
+
+You may view the publicly hosted website, but the underlying code, formulas, and methodology are protected by this license.
+
+Any attempt to reuse this work without explicit written permission from the author is a violation of intellectual property rights and will be subject to legal action.
+
+Contact: bahbouhibouchaib524@gmail.com
